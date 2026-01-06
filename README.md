@@ -12,7 +12,7 @@
 **BitBox**는 복잡한 계산이나 변환 작업을 빠르고 직관적으로 처리하기 위해 만들어진 웹 도구입니다.
 기존 공학용 계산기의 복잡한 UI를 개선하고, **shadcn/ui**를 활용하여 모던하고 일관된 사용자 경험(UX)을 제공합니다.
 
-🔗 **Live Demo:** [https://bitbox-dev.vercel.app](https://bitbox-dev.vercel.app) (여기에 본인 도메인 입력)
+🔗 **Live Demo:** [https://bit-box.vercel.app](https://bit-box.vercel.app)
 
 ## ✨ Key Features
 

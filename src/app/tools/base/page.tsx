@@ -3,6 +3,7 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BinaryConverter } from "@/components/tools/binary-converter";
 import { OctalConverter } from "@/components/tools/octal-converter";
+import { HexConverter } from "@/components/tools/hex-converter";
 import { Info } from "lucide-react";
 
 export default function BaseConverterPage() {
@@ -21,10 +22,7 @@ export default function BaseConverterPage() {
         <TabsList className="grid w-full grid-cols-3">
           <TabsTrigger value="binary">2진수 (Binary)</TabsTrigger>
           <TabsTrigger value="octal">8진수 (Octal)</TabsTrigger>
-          <TabsTrigger value="hex" disabled>
-            16진수 (Hex)
-          </TabsTrigger>{" "}
-          {/* 나중에 추가 */}
+          <TabsTrigger value="hex">16진수 (Hex)</TabsTrigger>
         </TabsList>
 
         <div className="mt-6">
@@ -44,7 +42,13 @@ export default function BaseConverterPage() {
           </TabsContent>
 
           <TabsContent value="hex">
-            {/* 16진수 컴포넌트 들어갈 자리 */}
+            <HexConverter />
+            <div className="mt-4 flex justify-center gap-2 text-sm text-slate-400">
+              <Info className="h-4 w-4" />
+              <span>
+                Tip: 색상 코드(#FFFFFF)나 메모리 주소 표기에 주로 사용됩니다.
+              </span>
+            </div>
           </TabsContent>
         </div>
       </Tabs>

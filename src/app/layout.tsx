@@ -34,6 +34,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "BitBox Team" }],
   creator: "BitBox Team",
+  verification: {
+    google: "wD1i8ns0RmEvTKPEiElHXByzNaW_HYA_UHiGv-XidUU",
+  },
   openGraph: {
     title: "BitBox - 개발자를 위한 스마트 도구 상자",
     description:

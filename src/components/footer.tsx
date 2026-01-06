@@ -20,7 +20,7 @@ export function Footer() {
 
           {/* 링크 섹션 */}
           <div className="flex gap-8 text-sm font-medium text-slate-600">
-            <a href="/tools" className="hover:text-blue-600">
+            {/* <a href="/tools" className="hover:text-blue-600">
               Tools
             </a>
             <a href="/privacy" className="hover:text-blue-600">
@@ -28,7 +28,7 @@ export function Footer() {
             </a>
             <a href="mailto:contact@bitbox.com" className="hover:text-blue-600">
               Contact
-            </a>
+            </a> */}
           </div>
 
           {/* 소셜/링크 아이콘 */}
@@ -40,14 +40,11 @@ export function Footer() {
             >
               <Github className="h-5 w-5" />
             </a>
-            <a href="#" className="hover:text-slate-900">
-              <Mail className="h-5 w-5" />
-            </a>
           </div>
         </div>
 
         <div className="mt-8 border-t pt-8 text-center text-xs text-slate-400">
-          <p>© 2026 BitBox. Built by [본인이름] in Software Engineering.</p>
+          <p>© 2026 BitBox. Built by Ji-in in Software Engineering.</p>
         </div>
       </div>
     </footer>

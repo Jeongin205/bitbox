@@ -3,56 +3,171 @@
 import * as React from "react";
 import Link from "next/link";
 import { Box, Github, Menu } from "lucide-react";
+import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
+  NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"; // 모바일 메뉴용
+
+// 🛠️ 메뉴에 표시할 도구 목록
+const components: {
+  title: string;
+  href: string;
+  description: string;
+  disabled?: boolean;
+}[] = [
+  {
+    title: "진법 변환기",
+    href: "/tools/binary",
+    description: "2진수, 10진수, 16진수 실시간 변환 및 비트 분석.",
+  },
+  {
+    title: "2의 보수 계산기",
+    href: "/tools/complement",
+    description: "음수 표현을 위한 2의 보수(2's Complement) 계산.",
+    disabled: true, // 아직 준비 중인 기능
+  },
+  {
+    title: "HEX 색상 추출기",
+    href: "/tools/color",
+    description: "RGB 값을 16진수 색상 코드로 변환.",
+    disabled: true,
+  },
+];
 
 export function Navbar() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        <div className="flex items-center gap-8">
-          {/* 로고 */}
-          <Link href="/" className="flex items-center gap-2">
-            <Box className="h-6 w-6 text-blue-600" />
-            <span className="text-lg font-bold tracking-tight">BitBox</span>
+        {/* 1. 로고 (클릭 시 대시보드로 이동) */}
+        <div className="flex items-center gap-6">
+          <Link
+            href="/"
+            className="flex items-center gap-2 transition-opacity hover:opacity-80"
+          >
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white shadow-blue-200">
+              <Box size={18} />
+            </div>
+            <span className="text-xl font-bold tracking-tight text-slate-900">
+              Bit<span className="text-blue-600">Box</span>
+            </span>
           </Link>
 
-          {/* 데스크탑 메뉴: shadcn NavigationMenu 활용 */}
-          <NavigationMenu className="hidden md:flex">
-            <NavigationMenuList>
-              <NavigationMenuItem>
-                <Link href="/tools" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    모든 도구
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-              <NavigationMenuItem>
-                <Link href="/guide" legacyBehavior passHref>
-                  <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                    가이드
-                  </NavigationMenuLink>
-                </Link>
-              </NavigationMenuItem>
-            </NavigationMenuList>
-          </NavigationMenu>
+          {/* 2. 데스크탑 메뉴 (드롭다운 적용) */}
+          <div className="hidden md:flex">
+            <NavigationMenu>
+              <NavigationMenuList>
+                {/* 도구 모음 드롭다운 */}
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger>도구 모음</NavigationMenuTrigger>
+                  <NavigationMenuContent>
+                    <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      {components.map((component) => (
+                        <ListItem
+                          key={component.title}
+                          title={component.title}
+                          href={component.disabled ? "#" : component.href}
+                          className={
+                            component.disabled
+                              ? "opacity-50 cursor-not-allowed"
+                              : ""
+                          }
+                        >
+                          {component.description}
+                        </ListItem>
+                      ))}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                {/* 일반 링크 */}
+                <NavigationMenuItem>
+                  <Link href="/about" legacyBehavior passHref>
+                    <NavigationMenuLink
+                      className={navigationMenuTriggerStyle()}
+                    >
+                      소개 (About)
+                    </NavigationMenuLink>
+                  </Link>
+                </NavigationMenuItem>
+              </NavigationMenuList>
+            </NavigationMenu>
+          </div>
         </div>
 
-        {/* 오른쪽 버튼 영역 */}
+        {/* 3. 우측 아이콘 & 모바일 메뉴 */}
         <div className="flex items-center gap-2">
-          <Button variant="ghost" size="icon" asChild>
-            <a href="https://github.com/Jeongin205/bitbox" target="_blank">
+          <Button
+            variant="ghost"
+            size="icon"
+            asChild
+            className="hidden md:flex"
+          >
+            <a
+              href="https://github.com/Jeongin205/bitbox"
+              target="_blank"
+              rel="noreferrer"
+            >
               <Github className="h-5 w-5" />
             </a>
           </Button>
+
+          {/* 모바일 햄버거 메뉴 (Sheet 사용) */}
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right">
+              <div className="flex flex-col gap-4 pt-10">
+                <Link href="/" className="text-lg font-semibold">
+                  홈 (대시보드)
+                </Link>
+                <Link href="/tools/binary" className="text-lg font-semibold">
+                  진법 변환기
+                </Link>
+                <Link href="/about" className="text-lg font-semibold">
+                  소개
+                </Link>
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
   );
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<"a">,
+  React.ComponentPropsWithoutRef<"a">
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 hover:text-slate-900 focus:bg-slate-100 focus:text-slate-900",
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-slate-500">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  );
+});
+ListItem.displayName = "ListItem";

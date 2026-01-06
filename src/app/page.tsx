@@ -26,7 +26,7 @@ const TOOLS = [
     description:
       "2진수, 10진수, 16진수를 실시간으로 변환하고 비트 패턴을 분석합니다.",
     icon: <Binary className="h-8 w-8 text-blue-600" />,
-    href: "/tools/binary",
+    href: "/tools/base",
     status: "active", // 활성화 상태
   },
   {

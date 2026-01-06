@@ -25,7 +25,7 @@ const components: {
 }[] = [
   {
     title: "진법 변환기",
-    href: "/tools/binary",
+    href: "/tools/base",
     description: "2진수, 10진수, 16진수 실시간 변환 및 비트 분석.",
   },
   {

@@ -17,44 +17,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-// 🛠️ 도구 데이터 관리 (나중에 여기에 계속 추가하면 됩니다)
-const TOOLS = [
-  {
-    id: "binary",
-    title: "진법 변환기",
-    description:
-      "2진수, 10진수, 16진수를 실시간으로 변환하고 비트 패턴을 분석합니다.",
-    icon: <Binary className="h-8 w-8 text-blue-600" />,
-    href: "/tools/base",
-    status: "active", // 활성화 상태
-  },
-  {
-    id: "complement",
-    title: "2의 보수 계산기",
-    description:
-      "컴퓨터 내부의 음수 표현 방식인 2의 보수(2's Complement)를 계산합니다.",
-    icon: <Calculator className="h-8 w-8 text-blue-600" />,
-    href: "/tools/twos",
-    status: "active", // 활성화 상태
-  },
-  {
-    id: "hex-color",
-    title: "HEX 색상 추출기",
-    description: "RGB 값을 16진수 색상 코드로 변환하거나 반대로 계산합니다.",
-    icon: <Palette className="h-8 w-8 text-slate-400" />,
-    href: "/tools/color",
-    status: "coming-soon",
-  },
-  {
-    id: "json-fmt",
-    title: "JSON 포맷터",
-    description: "복잡한 JSON 데이터를 보기 좋게 정렬하고 유효성을 검사합니다.",
-    icon: <FileJson className="h-8 w-8 text-slate-400" />,
-    href: "/tools/json",
-    status: "coming-soon",
-  },
-];
+import { SITE_MENU } from "@/config/nav";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   return (
@@ -73,7 +37,7 @@ export default function HomePage() {
 
       {/* 2. 도구 그리드 (Tool Grid) */}
       <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {TOOLS.map((tool) => (
+        {SITE_MENU.map((tool) => (
           <Link
             key={tool.id}
             href={tool.status === "active" ? tool.href : "#"}
@@ -89,11 +53,21 @@ export default function HomePage() {
               <CardHeader>
                 <div className="mb-4 flex items-center justify-between">
                   <div
-                    className={`rounded-lg p-2 ${
+                    className={cn(
+                      "rounded-lg p-2 transition-colors",
+                      // ✅ 상태에 따라 배경색 자동 변경
                       tool.status === "active" ? "bg-blue-50" : "bg-slate-100"
-                    }`}
+                    )}
                   >
-                    {tool.icon}
+                    {/* ✅ 아이콘 색상도 상태에 따라 자동 변경 (iconColor 변수 삭제됨) */}
+                    <tool.icon
+                      className={cn(
+                        "h-8 w-8",
+                        tool.status === "active"
+                          ? "text-blue-600"
+                          : "text-slate-400"
+                      )}
+                    />
                   </div>
                   {tool.status === "coming-soon" && (
                     <Badge

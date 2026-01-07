@@ -15,31 +15,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"; // 모바일 메뉴용
-
-// 🛠️ 메뉴에 표시할 도구 목록
-const components: {
-  title: string;
-  href: string;
-  description: string;
-  disabled?: boolean;
-}[] = [
-  {
-    title: "진법 변환기",
-    href: "/tools/base",
-    description: "2진수, 10진수, 16진수 실시간 변환 및 비트 분석.",
-  },
-  {
-    title: "2의 보수 계산기",
-    href: "/tools/twos",
-    description: "음수 표현을 위한 2의 보수(2's Complement) 계산.",
-  },
-  {
-    title: "HEX 색상 추출기",
-    href: "/tools/color",
-    description: "RGB 값을 16진수 색상 코드로 변환.",
-    disabled: true,
-  },
-];
+import { SITE_MENU } from "@/config/nav";
 
 export function Navbar() {
   return (
@@ -68,18 +44,18 @@ export function Navbar() {
                   <NavigationMenuTrigger>도구 모음</NavigationMenuTrigger>
                   <NavigationMenuContent>
                     <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                      {components.map((component) => (
+                      {SITE_MENU.map((item) => (
                         <ListItem
-                          key={component.title}
-                          title={component.title}
-                          href={component.disabled ? "#" : component.href}
+                          key={item.title}
+                          title={item.title}
+                          href={item.status === "coming-soon" ? "#" : item.href}
                           className={
-                            component.disabled
+                            item.status === "coming-soon"
                               ? "opacity-50 cursor-not-allowed"
                               : ""
                           }
                         >
-                          {component.description}
+                          {item.description}
                         </ListItem>
                       ))}
                     </ul>

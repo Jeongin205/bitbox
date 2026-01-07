@@ -30,9 +30,8 @@ const components: {
   },
   {
     title: "2의 보수 계산기",
-    href: "/tools/complement",
+    href: "/tools/twos",
     description: "음수 표현을 위한 2의 보수(2's Complement) 계산.",
-    disabled: true, // 아직 준비 중인 기능
   },
   {
     title: "HEX 색상 추출기",

@@ -80,7 +80,7 @@ export function BinaryInput({
   const getDisplayValue = (raw: string) => {
     if (!raw) return "";
     if (!useSpacing) return raw;
-    return raw.replace(/(.{4})/g, "$1 ").trim();
+    return raw.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
   };
 
   const handleChange = (newValue: string) => {

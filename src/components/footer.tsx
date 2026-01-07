@@ -22,11 +22,11 @@ export function Footer() {
           <div className="flex gap-8 text-sm font-medium text-slate-600">
             {/* <a href="/tools" className="hover:text-blue-600">
               Tools
+            </a>*/}
+            <a href="/about" className="hover:text-blue-600">
+              About
             </a>
-            <a href="/privacy" className="hover:text-blue-600">
-              Privacy
-            </a>
-            <a href="mailto:contact@bitbox.com" className="hover:text-blue-600">
+            {/* <a href="mailto:contact@bitbox.com" className="hover:text-blue-600">
               Contact
             </a> */}
           </div>

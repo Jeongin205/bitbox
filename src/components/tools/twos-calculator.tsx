@@ -1,14 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Calculator, AlertCircle, RefreshCcw } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Calculator, AlertCircle } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { CopyInput } from "@/components/copy-input";
 import { cn } from "@/lib/utils";
 import { BinaryInput } from "@/components/tools/binary-input";
+import { ToolHeader } from "@/components/tools/tool-header";
 
 const BIT_MODES = [4, 8, 16, 32];
 
@@ -122,21 +123,12 @@ export function TwosCalculator() {
 
   return (
     <Card className="border-0 shadow-sm ring-1 ring-slate-200 sm:border sm:ring-0">
-      <CardHeader className="flex flex-row items-center justify-between space-y-0 bg-slate-50/50 pb-4">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <Calculator className="h-5 w-5 text-blue-600" />
-          2의 보수 계산기 (2's Complement)
-        </CardTitle>
-        <Button
-          variant="ghost"
-          size="sm"
-          onClick={handleReset}
-          className="h-8 px-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50"
-        >
-          <RefreshCcw className="mr-2 h-3.5 w-3.5" />
-          초기화
-        </Button>
-      </CardHeader>
+      <ToolHeader
+        title="2의 보수 계산기 (2's Complement)"
+        icon={Calculator}
+        iconClassName="text-blue-600"
+        onReset={handleReset}
+      />
       <CardContent className="space-y-6 p-6">
         {/* 비트 수 선택 */}
         <div className="space-y-3">

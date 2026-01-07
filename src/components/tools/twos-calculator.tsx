@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Calculator, AlertCircle } from "lucide-react";
+import { Calculator, AlertCircle, RefreshCcw } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -17,6 +17,13 @@ export function TwosCalculator() {
   const [bits, setBits] = useState(8);
   const [binary, setBinary] = useState("");
   const [error, setError] = useState<string | null>(null);
+
+  // 초기화 핸들러
+  const handleReset = () => {
+    setDecimal("");
+    setBinary("");
+    setError(null);
+  };
 
   // 1. 비트 수가 바뀔 때: 현재 입력된 10진수 기준으로 다시 계산
   const handleBitChange = (newBits: number) => {
@@ -115,11 +122,20 @@ export function TwosCalculator() {
 
   return (
     <Card className="border-0 shadow-sm ring-1 ring-slate-200 sm:border sm:ring-0">
-      <CardHeader className="bg-slate-50/50 pb-4">
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 bg-slate-50/50 pb-4">
         <CardTitle className="flex items-center gap-2 text-lg">
           <Calculator className="h-5 w-5 text-blue-600" />
           2의 보수 계산기 (2's Complement)
         </CardTitle>
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={handleReset}
+          className="h-8 px-2 text-slate-500 hover:text-blue-600 hover:bg-blue-50"
+        >
+          <RefreshCcw className="mr-2 h-3.5 w-3.5" />
+          초기화
+        </Button>
       </CardHeader>
       <CardContent className="space-y-6 p-6">
         {/* 비트 수 선택 */}

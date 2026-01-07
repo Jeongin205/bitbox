@@ -34,9 +34,9 @@ const TOOLS = [
     title: "2의 보수 계산기",
     description:
       "컴퓨터 내부의 음수 표현 방식인 2의 보수(2's Complement)를 계산합니다.",
-    icon: <Calculator className="h-8 w-8 text-slate-400" />,
-    href: "/tools/complement",
-    status: "coming-soon", // 준비 중
+    icon: <Calculator className="h-8 w-8 text-blue-600" />,
+    href: "/tools/twos",
+    status: "active", // 활성화 상태
   },
   {
     id: "hex-color",

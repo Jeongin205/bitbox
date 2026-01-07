@@ -6,11 +6,13 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { CopyInput } from "@/components/copy-input";
+import { BinaryInput } from "@/components/tools/binary-input";
 
 export function BinaryConverter() {
   const [dec, setDec] = useState("");
   const [bin, setBin] = useState("");
 
+  // 10진수 입력 시
   const handleDecChange = (value: string) => {
     setDec(value);
     if (!value) {
@@ -19,21 +21,13 @@ export function BinaryConverter() {
     }
     const num = parseInt(value, 10);
     if (!isNaN(num)) {
-      const binaryStr = num.toString(2);
-      const formattedBin = binaryStr.replace(/\B(?=(\d{4})+(?!\d))/g, " ");
-      setBin(formattedBin);
+      setBin(num.toString(2));
     }
   };
 
-  const handleBinChange = (value: string) => {
-    const rawValue = value.replace(/\s/g, "");
-
-    if (rawValue && !/^[01]*$/.test(rawValue)) {
-      toast.error("2진수는 0과 1만 입력할 수 있어요!");
-      setBin(value);
-      return;
-    }
-    setBin(value);
+  // 2진수 입력 시
+  const handleBinChange = (rawValue: string) => {
+    setBin(rawValue);
     if (!rawValue) {
       setDec("");
       return;
@@ -64,22 +58,12 @@ export function BinaryConverter() {
             copyLabel="10진수"
           />
         </div>
-        <div className="space-y-2">
-          <Label htmlFor="bin" className="text-blue-600">
-            Binary (2진수)
-          </Label>
-          <CopyInput
-            id="bin"
-            value={bin}
-            onValueChange={handleBinChange}
-            placeholder="예: 1111 1111"
-            copyLabel="2진수"
-            className="border-blue-200 bg-blue-50/50 text-blue-900"
-          />
-          <p className="text-right text-xs text-slate-400">
-            * 4자리씩 자동 구분됩니다.
-          </p>
-        </div>
+        <BinaryInput
+          value={bin}
+          onChange={handleBinChange}
+          label="Binary (2진수)"
+          placeholder="예: 11111111"
+        />
       </CardContent>
     </Card>
   );

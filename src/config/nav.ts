@@ -27,6 +27,6 @@ export const SITE_MENU = [
     href: "/tools/color",
     description: "RGB 값을 16진수 색상 코드로 변환하거나 반대로 계산합니다.",
     icon: Palette,
-    status: "coming-soon",
+    status: "active",
   },
 ] as const;

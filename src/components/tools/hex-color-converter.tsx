@@ -53,7 +53,6 @@ export function HexColorConverter() {
         title="HEX 색상 추출기"
         description="RGB 값을 조절하여 16진수 색상 코드를 생성하거나 변환합니다."
         icon={Palette}
-        iconClassName="text-blue-600"
         onReset={handleReset}
       />
 

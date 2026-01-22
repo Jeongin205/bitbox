@@ -24,7 +24,7 @@ export function ToolHeader({
     <CardHeader className="flex flex-col space-y-1 pb-4 border-b border-slate-100 bg-slate-50/50">
       <div className="flex w-full items-center justify-between">
         <CardTitle className="flex items-center gap-2 text-lg">
-          <Icon className={cn("h-5 w-5", iconClassName)} />
+          <Icon className={cn("h-5 w-5 text-blue-600", iconClassName)} />
           {title}
         </CardTitle>
         {/* onReset이 있을 때만 버튼 렌더링 */}

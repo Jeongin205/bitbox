@@ -126,7 +126,6 @@ export function TwosCalculator() {
       <ToolHeader
         title="2의 보수 계산기 (2's Complement)"
         icon={Calculator}
-        iconClassName="text-blue-600"
         onReset={handleReset}
       />
       <CardContent className="space-y-6 p-6">
@@ -143,7 +142,7 @@ export function TwosCalculator() {
                   "flex-1 transition-all",
                   bits === mode
                     ? "bg-blue-600 hover:bg-blue-700 text-white border-blue-600"
-                    : "hover:text-blue-600 hover:border-blue-200"
+                    : "hover:text-blue-600 hover:border-blue-200",
                 )}
               >
                 {mode}-bit

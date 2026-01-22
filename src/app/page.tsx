@@ -56,7 +56,7 @@ export default function HomePage() {
                     className={cn(
                       "rounded-lg p-2 transition-colors",
                       // ✅ 상태에 따라 배경색 자동 변경
-                      tool.status === "active" ? "bg-blue-50" : "bg-slate-100"
+                      tool.status === "active" ? "bg-blue-50" : "bg-slate-100",
                     )}
                   >
                     {/* ✅ 아이콘 색상도 상태에 따라 자동 변경 (iconColor 변수 삭제됨) */}
@@ -65,21 +65,11 @@ export default function HomePage() {
                         "h-8 w-8",
                         tool.status === "active"
                           ? "text-blue-600"
-                          : "text-slate-400"
+                          : "text-slate-400",
                       )}
                     />
                   </div>
-                  {tool.status === "coming-soon" && (
-                    <Badge
-                      variant="secondary"
-                      className="bg-slate-200 text-slate-500"
-                    >
-                      준비 중
-                    </Badge>
-                  )}
-                  {tool.status === "active" && (
-                    <ArrowRight className="h-5 w-5 text-slate-300 transition-transform group-hover:translate-x-1 group-hover:text-blue-500" />
-                  )}
+                  <ArrowRight className="h-5 w-5 text-slate-300 transition-transform group-hover:translate-x-1 group-hover:text-blue-500" />
                 </div>
                 <CardTitle className="text-xl">{tool.title}</CardTitle>
               </CardHeader>

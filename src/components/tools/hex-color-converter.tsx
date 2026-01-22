@@ -42,22 +42,23 @@ export function HexColorConverter() {
     }
   };
 
-  // 슬라이더 변경 핸들러
-  const handleSliderChange = (channel: "r" | "g" | "b", value: number[]) => {
-    setColor((prev) => ({ ...prev, [channel]: value[0] }));
+  // 슬라이더 및 숫자 입력 핸들러
+  const handleColorChange = (channel: "r" | "g" | "b", val: number) => {
+    setColor((prev) => ({ ...prev, [channel]: val }));
   };
 
   return (
     <Card className="border-0 shadow-sm ring-1 ring-slate-200 sm:border sm:ring-0">
       <ToolHeader
         title="HEX 색상 추출기"
-        description="RGB 값을 조절하여 16진수 색상 코드를 생성하거나 변환합니다."
+        description="RGB 값을 조절하여 16진수 색상 코드를 생성합니다."
         icon={Palette}
+        // iconClassName은 기본값(blue)을 따르므로 제거
         onReset={handleReset}
       />
 
       <CardContent className="space-y-8 p-6">
-        {/* 1. 색상 미리보기 (Preview) */}
+        {/* 1. 색상 미리보기 */}
         <div
           className="h-32 w-full rounded-xl shadow-inner border border-slate-200 flex items-center justify-center transition-colors duration-200"
           style={{ backgroundColor: hex }}
@@ -80,41 +81,34 @@ export function HexColorConverter() {
           />
         </div>
 
-        {/* 3. RGB 슬라이더 컨트롤 */}
-        <div className="space-y-6">
-          <ColorSlider
+        {/* 3. RGB 슬라이더 + 숫자 입력 컨트롤 */}
+        <div className="space-y-6 pt-2">
+          <ColorControl
             label="Red (적색)"
             value={color.r}
             colorClass="bg-red-500"
-            onChange={(v) => handleSliderChange("r", v)}
+            onChange={(v) => handleColorChange("r", v)}
           />
-          <ColorSlider
+          <ColorControl
             label="Green (녹색)"
             value={color.g}
             colorClass="bg-green-500"
-            onChange={(v) => handleSliderChange("g", v)}
+            onChange={(v) => handleColorChange("g", v)}
           />
-          <ColorSlider
+          <ColorControl
             label="Blue (청색)"
             value={color.b}
             colorClass="bg-blue-500"
-            onChange={(v) => handleSliderChange("b", v)}
+            onChange={(v) => handleColorChange("b", v)}
           />
-        </div>
-
-        {/* RGB 값 복사 영역 */}
-        <div className="grid grid-cols-3 gap-4 pt-4 border-t border-slate-100">
-          <ReadOnlyRgb label="R" value={color.r} />
-          <ReadOnlyRgb label="G" value={color.g} />
-          <ReadOnlyRgb label="B" value={color.b} />
         </div>
       </CardContent>
     </Card>
   );
 }
 
-// 🎨 슬라이더 서브 컴포넌트 (내부용)
-function ColorSlider({
+// 🎨 슬라이더 + 인풋 통합 컴포넌트
+function ColorControl({
   label,
   value,
   colorClass,
@@ -123,36 +117,35 @@ function ColorSlider({
   label: string;
   value: number;
   colorClass: string;
-  onChange: (val: number[]) => void;
+  onChange: (val: number) => void;
 }) {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let val = parseInt(e.target.value);
+    if (isNaN(val)) val = 0;
+    if (val > 255) val = 255; // 255 초과 방지
+    if (val < 0) val = 0; // 음수 방지
+    onChange(val);
+  };
+
   return (
     <div className="space-y-3">
-      <div className="flex justify-between items-center">
-        <Label className="text-xs font-medium text-slate-500">{label}</Label>
-        <span className="text-xs font-mono font-bold text-slate-700">
-          {value}
-        </span>
-      </div>
+      <Label className="text-xs font-medium text-slate-500">{label}</Label>
       <div className="flex gap-4 items-center">
+        {/* 슬라이더 */}
         <Slider
           value={[value]}
           max={255}
           step={1}
-          onValueChange={onChange}
-          className={`flex-1 ${colorClass.replace("bg-", "text-")}`} // 슬라이더 트랙 색상 매칭
+          onValueChange={(vals) => onChange(vals[0])}
+          className={`flex-1 ${colorClass.replace("bg-", "text-")}`}
         />
-      </div>
-    </div>
-  );
-}
-
-// 🔢 RGB 값 표시용 서브 컴포넌트
-function ReadOnlyRgb({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="text-center space-y-1">
-      <div className="text-xs text-slate-400 font-medium">{label}</div>
-      <div className="font-mono font-bold text-slate-700 bg-slate-50 py-2 rounded border border-slate-200">
-        {value}
+        {/* 숫자 입력창 (직접 입력 가능) */}
+        <Input
+          type="number"
+          value={value}
+          onChange={handleInputChange}
+          className="w-20 text-right font-mono tabular-nums h-9"
+        />
       </div>
     </div>
   );

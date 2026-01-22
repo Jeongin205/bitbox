@@ -88,7 +88,6 @@ export function BaseConverter() {
       <ToolHeader
         title="진법 변환기"
         icon={ArrowRightLeft}
-        iconClassName="text-blue-600"
         onReset={handleReset}
       />
 

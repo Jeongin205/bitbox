@@ -48,12 +48,7 @@ export function Navbar() {
                         <ListItem
                           key={item.title}
                           title={item.title}
-                          href={item.status === "coming-soon" ? "#" : item.href}
-                          className={
-                            item.status === "coming-soon"
-                              ? "opacity-50 cursor-not-allowed"
-                              : ""
-                          }
+                          href={item.href}
                         >
                           {item.description}
                         </ListItem>
@@ -132,7 +127,7 @@ const ListItem = React.forwardRef<
           ref={ref}
           className={cn(
             "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-slate-100 hover:text-slate-900 focus:bg-slate-100 focus:text-slate-900",
-            className
+            className,
           )}
           {...props}
         >

@@ -10,7 +10,7 @@ import { ToolHeader } from "@/components/tools/tool-header";
 import { CopyInput } from "@/components/copy-input";
 
 export function HexColorConverter() {
-  // 기본값: BitBox의 메인 컬러 (Blue-600)
+  // 기본값: ToolBitBox의 메인 컬러 (Blue-600)
   const [color, setColor] = useState({ r: 0, g: 0, b: 0 });
   const [hex, setHex] = useState("#000000");
 

@@ -19,8 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | BitBox", // 페이지별 타이틀 뒤에 자동으로 붙음 (예: 진법 변환기 | BitBox)
-    default: "BitBox - 개발자를 위한 스마트 도구 상자", // 기본 타이틀
+    template: "%s | ToolBitBox", // 페이지별 타이틀 뒤에 자동으로 붙음 (예: 진법 변환기 | BitBox)
+    default: "ToolBitBox - 개발자를 위한 스마트 도구 상자", // 기본 타이틀
   },
   description:
     "2진수, 8진수, 16진수 변환부터 2의 보수 계산까지. 컴퓨터 공학 전공자와 개발자를 위한 필수 웹 유틸리티 모음입니다.",
@@ -30,19 +30,19 @@ export const metadata: Metadata = {
     "16진수 계산",
     "2의 보수",
     "개발자 도구",
-    "BitBox",
+    "ToolBitBox",
   ],
-  authors: [{ name: "BitBox Team" }],
-  creator: "BitBox Team",
+  authors: [{ name: "ToolBitBox Team" }],
+  creator: "ToolBitBox Team",
   verification: {
     google: "wD1i8ns0RmEvTKPEiElHXByzNaW_HYA_UHiGv-XidUU",
   },
   openGraph: {
-    title: "BitBox - 개발자를 위한 스마트 도구 상자",
+    title: "ToolBitBox - 개발자를 위한 스마트 도구 상자",
     description:
-      "복잡한 계산은 BitBox에 맡기세요. 빠르고 정확한 개발자용 도구 모음.",
+      "복잡한 계산은 ToolBitBox에 맡기세요. 빠르고 정확한 개발자용 도구 모음.",
     url: "https://bit-box.vercel.app",
-    siteName: "BitBox",
+    siteName: "ToolBitBox",
     images: [
       {
         url: "/opengraph-image.png",

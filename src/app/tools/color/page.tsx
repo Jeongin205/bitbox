@@ -1,7 +1,7 @@
 import { HexColorConverter } from "@/components/tools/hex-color-converter";
 
 export const metadata = {
-  title: "HEX 색상 추출기 - BitBox",
+  title: "HEX 색상 추출기 - ToolBitBox",
   description:
     "RGB 값을 조절하여 웹에서 사용하는 16진수(Hex) 색상 코드를 생성합니다.",
 };

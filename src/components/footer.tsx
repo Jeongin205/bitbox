@@ -11,7 +11,7 @@ export function Footer() {
           <div className="flex flex-col items-center gap-2 md:items-start">
             <div className="flex items-center gap-2">
               <Box className="h-5 w-5 text-blue-600" />
-              <span className="text-lg font-bold">BitBox</span>
+              <span className="text-lg font-bold">ToolBitBox</span>
             </div>
             <p className="text-sm text-slate-500">
               개발자와 학생을 위한 스마트한 도구 상자
@@ -26,15 +26,12 @@ export function Footer() {
             <a href="/about" className="hover:text-blue-600">
               About
             </a>
-            {/* <a href="mailto:contact@bitbox.com" className="hover:text-blue-600">
-              Contact
-            </a> */}
           </div>
 
           {/* 소셜/링크 아이콘 */}
           <div className="flex items-center gap-4 text-slate-400">
             <a
-              href="https://github.com/Jeongin205/bitbox"
+              href="https://github.com/Jeongin205/toolbitbox"
               target="_blank"
               className="hover:text-slate-900"
             >
@@ -44,7 +41,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 border-t pt-8 text-center text-xs text-slate-400">
-          <p>© 2026 BitBox. Built by Ji-in in Software Engineering.</p>
+          <p>© 2026 ToolBitBox. Built by Ji-in in Software Engineering.</p>
         </div>
       </div>
     </footer>

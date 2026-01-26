@@ -81,7 +81,7 @@ export function Navbar() {
             className="hidden md:flex"
           >
             <a
-              href="https://github.com/Jeongin205/bitbox"
+              href="https://github.com/Jeongin205/toolbitbox"
               target="_blank"
               rel="noreferrer"
             >

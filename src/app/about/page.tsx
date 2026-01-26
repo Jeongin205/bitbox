@@ -13,7 +13,8 @@ import { Badge } from "@/components/ui/badge";
 
 export const metadata: Metadata = {
   title: "소개 (About)",
-  description: "BitBox 프로젝트 개발 스토리와 사용된 기술 스택을 소개합니다.",
+  description:
+    "ToolBitBox 프로젝트 개발 스토리와 사용된 기술 스택을 소개합니다.",
 };
 
 export default function AboutPage() {
@@ -22,7 +23,7 @@ export default function AboutPage() {
       {/* 1. 헤더 섹션 */}
       <section className="mb-12 text-center">
         <h1 className="mb-4 text-4xl font-extrabold tracking-tight text-slate-900">
-          About <span className="text-blue-600">BitBox</span>
+          About <span className="text-blue-600">ToolBitBox</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-slate-600">
           개발자와 전공생을 위한 웹 유틸리티 도구 상자입니다.
@@ -42,7 +43,7 @@ export default function AboutPage() {
           </CardHeader>
           <CardContent className="space-y-4 text-slate-600 leading-relaxed">
             <p>
-              BitBox는 컴퓨터 구조와 시스템 프로그래밍을 공부하며 겪었던
+              ToolBitBox는 컴퓨터 구조와 시스템 프로그래밍을 공부하며 겪었던
               <strong> "진법 변환의 번거로움"</strong>을 해결하기 위해
               시작되었습니다.
             </p>

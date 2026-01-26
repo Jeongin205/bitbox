@@ -1,4 +1,4 @@
-# BitBox 📦
+# ToolBitBox 📦
 
 > **Developer's Smart Toolkit** > 컴퓨터 공학 전공자와 개발자를 위한 웹 유틸리티 모음집입니다.
 
@@ -9,7 +9,7 @@
 
 ## 🚀 Introduction
 
-**BitBox**는 복잡한 계산이나 변환 작업을 빠르고 직관적으로 처리하기 위해 만들어진 웹 도구입니다.
+**ToolBitBox**는 복잡한 계산이나 변환 작업을 빠르고 직관적으로 처리하기 위해 만들어진 웹 도구입니다.
 기존 공학용 계산기의 복잡한 UI를 개선하고, **shadcn/ui**를 활용하여 모던하고 일관된 사용자 경험(UX)을 제공합니다.
 
 🔗 **Live Demo:** [https://bit-box.vercel.app](https://bit-box.vercel.app)

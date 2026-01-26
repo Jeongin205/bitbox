@@ -1,7 +1,7 @@
 import { BaseConverter } from "@/components/tools/base-converter";
 
 export const metadata = {
-  title: "진법 변환기 - BitBox",
+  title: "진법 변환기 - ToolBitBox",
   description: "2진수, 8진수, 10진수, 16진수를 실시간으로 상호 변환합니다.",
 };
 

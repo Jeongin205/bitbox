@@ -29,7 +29,7 @@ export default function HomePage() {
           개발자를 위한 <span className="text-blue-600">스마트 도구 상자</span>
         </h1>
         <p className="mx-auto max-w-2xl text-lg text-slate-600">
-          복잡한 계산과 변환 작업을 BitBox에서 한 번에 해결하세요.
+          복잡한 계산과 변환 작업을 ToolBitBox에서 한 번에 해결하세요.
           <br className="hidden sm:inline" />
           공학용 계산기보다 빠르고, 일반 검색보다 정확합니다.
         </p>

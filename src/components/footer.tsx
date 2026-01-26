@@ -11,7 +11,9 @@ export function Footer() {
           <div className="flex flex-col items-center gap-2 md:items-start">
             <div className="flex items-center gap-2">
               <Box className="h-5 w-5 text-blue-600" />
-              <span className="text-lg font-bold">ToolBitBox</span>
+              <span className="text-lg font-bold">
+                ToolBit<span className="text-blue-600">Box</span>
+              </span>
             </div>
             <p className="text-sm text-slate-500">
               개발자와 학생을 위한 스마트한 도구 상자

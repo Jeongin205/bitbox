@@ -31,7 +31,7 @@ export function Navbar() {
               <Box size={18} />
             </div>
             <span className="text-xl font-bold tracking-tight text-slate-900">
-              Bit<span className="text-blue-600">Box</span>
+              ToolBit<span className="text-blue-600">Box</span>
             </span>
           </Link>
 

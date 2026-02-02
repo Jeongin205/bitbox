@@ -6,7 +6,7 @@ export const SITE_MENU = [
   {
     id: "binary",
     title: "진법 변환기",
-    href: "/tools/base",
+    href: "/tools/radix",
     description:
       "2진수, 8진수, 16진수를 실시간으로 변환하고 비트 패턴을 분석합니다.",
     icon: Binary,

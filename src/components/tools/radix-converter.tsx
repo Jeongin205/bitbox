@@ -9,7 +9,7 @@ import { CopyInput } from "@/components/copy-input";
 import { BinaryInput } from "@/components/tools/binary-input"; // 기존 컴포넌트 재사용
 import { ToolHeader } from "@/components/tools/tool-header"; // 공통 헤더 재사용
 
-export function BaseConverter() {
+export function RadixConverter() {
   // 모든 진법의 값을 하나의 state 객체로 관리
   const [values, setValues] = useState({
     dec: "", // 10진수

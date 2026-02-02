@@ -13,7 +13,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     // 2. 진법 변환기 (Base Converter)
     {
-      url: `${baseUrl}/tools/base`,
+      url: `${baseUrl}/tools/radix`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.8,

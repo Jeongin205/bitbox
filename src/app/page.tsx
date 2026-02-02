@@ -1,14 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import {
-  ArrowRight,
-  Binary,
-  Calculator,
-  Palette,
-  FileJson,
-  Lock,
-} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -16,9 +9,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { SITE_MENU } from "@/config/nav";
-import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   return (
@@ -38,36 +29,15 @@ export default function HomePage() {
       {/* 2. 도구 그리드 (Tool Grid) */}
       <section className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {SITE_MENU.map((tool) => (
-          <Link
-            key={tool.id}
-            href={tool.status === "active" ? tool.href : "#"}
-            className={tool.status !== "active" ? "cursor-not-allowed" : ""}
-          >
+          <Link key={tool.id} href={tool.href}>
             <Card
-              className={`group relative h-full transition-all hover:shadow-lg ${
-                tool.status !== "active"
-                  ? "bg-slate-50 opacity-60"
-                  : "hover:-translate-y-1 hover:border-blue-200"
-              }`}
+              className={`group relative h-full transition-all hover:shadow-lg hover:-translate-y-1 hover:border-blue-200`}
             >
               <CardHeader>
                 <div className="mb-4 flex items-center justify-between">
-                  <div
-                    className={cn(
-                      "rounded-lg p-2 transition-colors",
-                      // ✅ 상태에 따라 배경색 자동 변경
-                      tool.status === "active" ? "bg-blue-50" : "bg-slate-100",
-                    )}
-                  >
-                    {/* ✅ 아이콘 색상도 상태에 따라 자동 변경 (iconColor 변수 삭제됨) */}
-                    <tool.icon
-                      className={cn(
-                        "h-8 w-8",
-                        tool.status === "active"
-                          ? "text-blue-600"
-                          : "text-slate-400",
-                      )}
-                    />
+                  <div className="rounded-lg p-2 transition-colorsbg-blue-50">
+                    {/* 아이콘 색상도 상태에 따라 자동 변경 */}
+                    <tool.icon className="text-blue-600" />
                   </div>
                   <ArrowRight className="h-5 w-5 text-slate-300 transition-transform group-hover:translate-x-1 group-hover:text-blue-500" />
                 </div>

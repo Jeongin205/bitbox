@@ -10,7 +10,6 @@ export const SITE_MENU = [
     description:
       "2진수, 8진수, 16진수를 실시간으로 변환하고 비트 패턴을 분석합니다.",
     icon: Binary,
-    status: "active",
   },
   {
     id: "complement",
@@ -19,7 +18,6 @@ export const SITE_MENU = [
     description:
       "컴퓨터 내부의 음수 표현 방식인 2의 보수(2's Complement)를 계산합니다.",
     icon: Calculator,
-    status: "active",
   },
   {
     id: "hex-color",
@@ -27,9 +25,9 @@ export const SITE_MENU = [
     href: "/tools/color",
     description: "RGB 값을 16진수 색상 코드로 변환하거나 반대로 계산합니다.",
     icon: Palette,
-    status: "active",
   },
   {
+    id: "quiz",
     title: "진법 변환 퀴즈",
     href: "/quiz",
     description: "시험 대비! 2의 보수와 진법 변환 실전 모의고사",

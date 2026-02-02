@@ -21,7 +21,7 @@ export function ToolHeader({
   onReset,
 }: ToolHeaderProps) {
   return (
-    <CardHeader className="flex flex-col space-y-1 pb-4 border-b border-slate-100 bg-slate-50/50">
+    <CardHeader className="flex flex-col space-y-1 pb-4 border-b border-slate-100">
       <div className="flex w-full items-center justify-between">
         <CardTitle className="flex items-center gap-2 text-lg">
           <Icon className={cn("h-5 w-5 text-blue-600", iconClassName)} />

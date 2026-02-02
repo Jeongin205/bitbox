@@ -1,4 +1,5 @@
 import { HexColorConverter } from "@/components/tools/hex-color-converter";
+import { ToolPage } from "@/components/tools/tool-page-layout";
 
 export const metadata = {
   title: "HEX 색상 추출기 - ToolBitBox",
@@ -8,20 +9,11 @@ export const metadata = {
 
 export default function ColorPage() {
   return (
-    <div className="container mx-auto max-w-2xl px-4 py-12">
-      <div className="mb-8 space-y-2 text-center">
-        {/* 페이지 타이틀 & 설명 섹션 */}
-        <h1 className="text-3xl font-bold tracking-tight text-slate-900">
-          HEX 색상 추출기
-        </h1>
-        <p className="text-slate-500">
-          슬라이더를 움직여 색상을 만들고 Hex 코드를 복사하세요.
-        </p>
-      </div>
-
-      {/* 통합 변환기 컴포넌트 배치 */}
-
+    <ToolPage
+      title="HEX 색상 추출기"
+      description="RGB 값을 조절하거나 HEX 코드를 입력하여 색상을 변환합니다."
+    >
       <HexColorConverter />
-    </div>
+    </ToolPage>
   );
 }

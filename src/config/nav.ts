@@ -1,4 +1,4 @@
-import { Binary, Calculator, Palette, FileJson } from "lucide-react";
+import { Binary, Calculator, Palette, Trophy } from "lucide-react";
 
 export type SiteConfig = (typeof SITE_MENU)[number];
 
@@ -28,5 +28,11 @@ export const SITE_MENU = [
     description: "RGB 값을 16진수 색상 코드로 변환하거나 반대로 계산합니다.",
     icon: Palette,
     status: "active",
+  },
+  {
+    title: "진법 변환 퀴즈",
+    href: "/quiz",
+    description: "시험 대비! 2의 보수와 진법 변환 실전 모의고사",
+    icon: Trophy,
   },
 ] as const;

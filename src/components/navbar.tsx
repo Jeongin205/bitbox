@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { Box, Github, Menu } from "lucide-react";
+import { Box, Github, Menu, X, ChevronRight } from "lucide-react"; // X(닫기), 화살표 아이콘 추가
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -14,18 +14,24 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"; // 모바일 메뉴용
 import { SITE_MENU } from "@/config/nav";
 
 export function Navbar() {
+  // 메뉴 열림/닫힘 상태 관리
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+  // 메뉴 토글 함수
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-md">
       <div className="container mx-auto flex h-16 items-center justify-between px-4">
-        {/* 1. 로고 (클릭 시 대시보드로 이동) */}
+        {/* 1. 로고 */}
         <div className="flex items-center gap-6">
           <Link
             href="/"
             className="flex items-center gap-2 transition-opacity hover:opacity-80"
+            onClick={() => setIsMenuOpen(false)} // 로고 클릭 시 메뉴 닫기
           >
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white shadow-blue-200">
               <Box size={18} />
@@ -35,11 +41,10 @@ export function Navbar() {
             </span>
           </Link>
 
-          {/* 2. 데스크탑 메뉴 (드롭다운 적용) */}
+          {/* 2. 데스크탑 메뉴 (기존 유지) */}
           <div className="hidden md:flex">
             <NavigationMenu>
               <NavigationMenuList>
-                {/* 도구 모음 드롭다운 */}
                 <NavigationMenuItem>
                   <NavigationMenuTrigger>도구 모음</NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -56,23 +61,22 @@ export function Navbar() {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
-
-                {/* 일반 링크 */}
                 <NavigationMenuItem>
-                  <Link href="/about" legacyBehavior passHref>
-                    <NavigationMenuLink
+                  <NavigationMenuLink asChild>
+                    <Link
+                      href="/about"
                       className={navigationMenuTriggerStyle()}
                     >
                       소개 (About)
-                    </NavigationMenuLink>
-                  </Link>
+                    </Link>
+                  </NavigationMenuLink>
                 </NavigationMenuItem>
               </NavigationMenuList>
             </NavigationMenu>
           </div>
         </div>
 
-        {/* 3. 우측 아이콘 & 모바일 메뉴 */}
+        {/* 3. 우측 아이콘 & 모바일 햄버거 */}
         <div className="flex items-center gap-2">
           <Button
             variant="ghost"
@@ -89,33 +93,84 @@ export function Navbar() {
             </a>
           </Button>
 
-          {/* 모바일 햄버거 메뉴 (Sheet 사용) */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden">
-                <Menu className="h-5 w-5" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right">
-              <div className="flex flex-col gap-4 pt-10">
-                <Link href="/" className="text-lg font-semibold">
-                  홈 (대시보드)
-                </Link>
-                <Link href="/tools/binary" className="text-lg font-semibold">
-                  진법 변환기
-                </Link>
-                <Link href="/about" className="text-lg font-semibold">
-                  소개
-                </Link>
-              </div>
-            </SheetContent>
-          </Sheet>
+          {/* 햄버거 버튼 (클릭 시 토글) */}
+          <Button
+            variant="ghost"
+            size="icon"
+            className="md:hidden"
+            onClick={toggleMenu}
+          >
+            {isMenuOpen ? (
+              <X className="h-5 w-5" /> // 열려있으면 X 아이콘
+            ) : (
+              <Menu className="h-5 w-5" /> // 닫혀있으면 햄버거 아이콘
+            )}
+            <span className="sr-only">메뉴 토글</span>
+          </Button>
         </div>
       </div>
+
+      {/* 모바일 메뉴 
+        헤더 바로 아래에 위치하며, isMenuOpen일 때만 렌더링됨 
+      */}
+      {isMenuOpen && (
+        <div className="absolute top-16 left-0 w-full border-b bg-white shadow-lg animate-in slide-in-from-top-5 duration-200 md:hidden">
+          <div className="container mx-auto px-4 py-6 space-y-6">
+            {/* 메뉴 그룹 1: 도구들 */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                Tools
+              </h4>
+              <div className="grid grid-cols-1 gap-2">
+                {SITE_MENU.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)} // 클릭 시 닫기
+                    className="flex items-center justify-between rounded-md p-3 text-sm font-medium text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors bg-slate-50/50"
+                  >
+                    <div className="flex items-center gap-3">
+                      {/* 아이콘이 있다면 렌더링, 없다면 생략 */}
+                      {/* <item.icon className="h-4 w-4 text-slate-400" /> */}
+                      {item.title}
+                    </div>
+                    <ChevronRight className="h-4 w-4 text-slate-300" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* 메뉴 그룹 2: 일반 링크 */}
+            <div className="space-y-3">
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                General
+              </h4>
+              <Link
+                href="/about"
+                onClick={() => setIsMenuOpen(false)}
+                className="flex items-center justify-between rounded-md p-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                소개 (About)
+                <ChevronRight className="h-4 w-4 text-slate-300" />
+              </Link>
+              <a
+                href="https://github.com/Jeongin205/toolbitbox"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center justify-between rounded-md p-3 text-sm font-medium text-slate-700 hover:bg-slate-50 transition-colors"
+              >
+                GitHub 저장소
+                <Github className="h-4 w-4 text-slate-400" />
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
 
+// ListItem 컴포넌트
 const ListItem = React.forwardRef<
   React.ElementRef<"a">,
   React.ComponentPropsWithoutRef<"a">
